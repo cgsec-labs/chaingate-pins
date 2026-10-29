@@ -1,7 +1,7 @@
 # Security
 
-This repository publishes the ChainGate pins feed: npm package versions known to be malicious, one per line. A new cut
-is published every hour and signed.
+This repository publishes the ChainGate advisory feed: npm package versions known to be malicious, one per line. A new
+cut is published every hour and signed.
 
 - **Verify before use.** The signature in `latest.jsonl.sig` is Ed25519 over the SHA-256 hex of `latest.jsonl`. It is made
   by the key named in the cut's header, which `keys.json` delegates. `keys.json` is signed by the ChainGate seed key. The

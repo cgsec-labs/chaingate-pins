@@ -1,8 +1,9 @@
-# ChainGate pins feed
+# ChainGate advisory feed
 
-This repository publishes the ChainGate pins feed: npm package versions known to be malicious, one per line. A new cut is
-published every hour and signed. ChainGate reads it alongside its own signed seed. A version listed here is blocked at
-install time.
+This repository publishes the ChainGate advisory feed: npm package versions known to be malicious, one per line. A new
+cut is published every hour and signed. It is made for the ChainGate runtime to read alongside its own signed seed, so
+that a version listed here is blocked at install time. The file names say "pins", the runtime's word for a blocked
+version.
 
 Security notes and how to report a wrong entry: [SECURITY.md](SECURITY.md).
 
