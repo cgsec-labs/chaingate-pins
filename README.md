@@ -11,10 +11,13 @@ Security notes and how to report a wrong entry: [SECURITY.md](SECURITY.md).
 
 | URL | What it is |
 |---|---|
-| https://raw.githubusercontent.com/r-bedekar/chaingate-pins/main/pins/latest.jsonl | the current cut |
-| https://raw.githubusercontent.com/r-bedekar/chaingate-pins/main/pins/latest.jsonl.sig | its signature |
-| https://raw.githubusercontent.com/r-bedekar/chaingate-pins/main/pins/keys.json | the feed keys, delegated by the seed key |
-| https://raw.githubusercontent.com/r-bedekar/chaingate-pins/main/pins/keys.json.sig | the seed key's signature over keys.json |
+| https://raw.githubusercontent.com/cgsec-labs/chaingate-pins/main/pins/latest.jsonl | the current cut |
+| https://raw.githubusercontent.com/cgsec-labs/chaingate-pins/main/pins/latest.jsonl.sig | its signature |
+| https://raw.githubusercontent.com/cgsec-labs/chaingate-pins/main/pins/keys.json | the feed keys, delegated by the seed key |
+| https://raw.githubusercontent.com/cgsec-labs/chaingate-pins/main/pins/keys.json.sig | the seed key's signature over keys.json |
+
+These URLs are stable: clients should use them exactly as written, because the ChainGate runtime does not follow
+redirects for this feed.
 
 Each cut is also kept for 90 days as `pins/cuts/<cut time>.jsonl` with its `.sig`. The cut time is the header's `cut_at`
 with the `-` and `:` removed, for example `20261029T110000Z`.
@@ -58,5 +61,7 @@ MCowBQYDK2VwAyEAP2W40LmbxTrDqDKaOpbfWD/xrbSPW4hz6RqQxZFte5E=
    openssl pkeyutl -verify -pubin -inkey pins-key.pem -rawin -in msg.txt -sigfile latest.jsonl.sig
    ```
 
-Each step should print `Signature Verified Successfully`. The ChainGate runtime makes the same checks, and also checks
+The two signatures use different forms. `keys.json` is signed over its bytes as they are (step 1). A cut is signed over
+its SHA-256 written as hex (step 3), the same form as the seed's `.sig`. Verifying `keys.json` with the seed recipe from
+SEEDS.md therefore fails; use the step 1 command. Each step should print `Signature Verified Successfully`. The ChainGate runtime makes the same checks, and also checks
 that each cut links to the one it last accepted.
