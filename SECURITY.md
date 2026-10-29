@@ -16,4 +16,4 @@ cut is published every hour and signed.
 - **History.** This branch is never force-pushed or deleted. Each cut is an ordinary commit.
 
 Report a wrong entry or a security problem to the address in the ChainGate repository's
-[SECURITY.md](https://github.com/r-bedekar/chaingate/blob/main/SECURITY.md).
+[SECURITY.md](https://github.com/cgsec-labs/chaingate/blob/main/SECURITY.md).
